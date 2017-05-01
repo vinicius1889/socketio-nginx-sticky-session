@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Users on This Page</h1>
+        <div id="users"></div>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+        var socket = io('http://localhost:8080');
+        var token = null;
+        var login = 'asd123';
+
+        socket.on('registered',function(data){
+            token = data.id;
+            socket.emit('atualizaDados',{token:token,login:login})
+        });
+
+        socket.on('dadosAtualizados',function(data){
+            console.log(data);
+        })
+
+
+
+
+
+        </script>
+    </body>
+</html>
